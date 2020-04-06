@@ -1,12 +1,10 @@
 package com.plantexchange.plantexchange.model;
 
-import lombok.Builder;
 import lombok.Getter;
 
 import javax.persistence.*;
 
 @Getter
-@Builder
 @Entity
 @Table(name = "user")
 public class User {
@@ -14,11 +12,16 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    int id;
+    private int id;
 
     @Column(name = "email", length = 64, nullable = false)
-    String email;
+    private String email;
 
     @Column(name = "password", length = 64, nullable = false)
-    String password;
+    private String password;
+
+    public User(String email, String password) {
+        this.email = email;
+        this.password = password;
+    }
 }

@@ -35,10 +35,7 @@ public class PlantExchangeApplication {
                     .build());
 
             UserRepository userRepo = ctx.getBean(UserRepository.class);
-            User user = userRepo.save(User.builder()
-                    .email("test@test.pl")
-                    .password("password")
-                    .build());
+            User user = userRepo.save(new User("test@test.pl","password"));
 
             PlantDealRepository plantRepo = ctx.getBean(PlantDealRepository.class);
             plantRepo.save(PlantDeal.builder()
