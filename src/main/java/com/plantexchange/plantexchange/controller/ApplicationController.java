@@ -47,9 +47,9 @@ public class ApplicationController {
                     userRegistrationForm.getEmail(),
                     userRegistrationForm.getPassword());
         } catch (Exception e) {
-
+            return "register";
         }
-        return "register";
+        return "login";
     }
 
 }

@@ -20,6 +20,8 @@ public class User {
     @Column(name = "password", length = 64, nullable = false)
     private String password;
 
+    public User() { }
+
     public User(String email, String password) {
         this.email = email;
         this.password = password;
