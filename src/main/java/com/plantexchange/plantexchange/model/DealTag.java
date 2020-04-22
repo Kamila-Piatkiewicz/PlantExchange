@@ -1,21 +1,23 @@
 package com.plantexchange.plantexchange.model;
 
-import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 
-@Builder
 @Getter
+@Setter
+@NoArgsConstructor
 @Entity
 @Table(name = "tag")
 public class DealTag {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int id;
-
     @Column(name = "name", length = 64, nullable = false)
     String name;
 
+    public DealTag(String name) {
+        this.name = name;
+    }
 }

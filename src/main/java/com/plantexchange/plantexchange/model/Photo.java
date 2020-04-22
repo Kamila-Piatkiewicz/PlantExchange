@@ -1,11 +1,11 @@
 package com.plantexchange.plantexchange.model;
 
-import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
-@Builder
+@NoArgsConstructor
 @Getter
 @Entity
 @Table(name = "photo")

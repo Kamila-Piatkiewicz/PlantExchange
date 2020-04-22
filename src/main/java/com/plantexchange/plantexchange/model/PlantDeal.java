@@ -1,14 +1,16 @@
 package com.plantexchange.plantexchange.model;
 
-import lombok.Builder;
-import lombok.Getter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Getter
+@Setter
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "deal")
 public class PlantDeal {
@@ -18,8 +20,7 @@ public class PlantDeal {
     @Column(name = "id")
     int id;
 
-    @OneToOne(targetEntity = User.class,
-            fetch = FetchType.LAZY)
+    @OneToOne(targetEntity = User.class)
     @JoinColumn(name = "author", nullable = false)
     User author;
 
@@ -39,13 +40,11 @@ public class PlantDeal {
     @Column(name = "price", length = 8)
     Double price;
 
-    @ManyToOne(targetEntity = Photo.class,
-            fetch = FetchType.LAZY)
+    @ManyToOne(targetEntity = Photo.class)
     @JoinColumn(name = "photo_urls")
     List<Photo> photos;
 
-    @ManyToMany(targetEntity = DealTag.class,
-            fetch = FetchType.LAZY)
+    @ManyToMany(targetEntity = DealTag.class)
     @JoinColumn(name = "tags")
     List<DealTag> tags;
 
