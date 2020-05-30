@@ -3,6 +3,8 @@ package com.plantexchange.plantexchange.model;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -12,41 +14,43 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "deal")
-public class PlantDeal {
+@Table(name = "offers")
+public class PlantOffer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    int id;
+    private int id;
 
     @OneToOne(targetEntity = User.class)
     @JoinColumn(name = "author", nullable = false)
-    User author;
-
-    @Enumerated(EnumType.STRING)
-    @Column(name = "category", length = 64, nullable = false)
-    DealCategory category;
+    private User author;
 
     @Column(name = "published_date", length = 64, nullable = false)
-    LocalDateTime publishedDate;
+    private LocalDateTime publishedDate;
 
+    @NotNull(message = "Category of the deal must be provided")
+    @Enumerated(EnumType.STRING)
+    @Column(name = "category", length = 64, nullable = false)
+    private OfferCategory category;
+
+    @NotEmpty(message = "Title must be provided")
     @Column(name = "title", length = 120, nullable = false)
-    String title;
+    private String title;
 
     @Column(name = "description", length = 1000)
-    String description;
+    private String description;
 
     @Column(name = "price", length = 8)
-    Double price;
+    private Double price;
 
-    @ManyToOne(targetEntity = Photo.class)
-    @JoinColumn(name = "photo_urls")
-    List<Photo> photos;
+    @OneToMany(targetEntity = Photo.class, cascade = CascadeType.ALL)
+    @JoinColumn(name = "offer_id")
+    private List<Photo> photos;
 
-    @ManyToMany(targetEntity = DealTag.class)
+    @ManyToMany(targetEntity = Tag.class)
     @JoinColumn(name = "tags")
-    List<DealTag> tags;
+    private List<Tag> tags;
 
     @Column(name = "city", length = 64)
     String city;

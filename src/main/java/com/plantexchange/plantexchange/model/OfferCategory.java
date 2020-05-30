@@ -1,6 +1,6 @@
 package com.plantexchange.plantexchange.model;
 
-public enum DealCategory {
+public enum OfferCategory {
     SELL,
     GIVE_AWAY,
     EXCHANGE,

@@ -3,15 +3,13 @@ package com.plantexchange.plantexchange.controller;
 import com.plantexchange.plantexchange.authentication.UserRegistrationForm;
 import com.plantexchange.plantexchange.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.support.DefaultMessageSourceResolvable;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.context.request.WebRequest;
+import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 @Controller
@@ -25,31 +23,21 @@ public class ApplicationController {
         return "index";
     }
 
-    @GetMapping("/register")
-    public String register(WebRequest request, Model model) {
-        UserRegistrationForm form = new UserRegistrationForm();
-        model.addAttribute("userRegistrationForm", form);
-        return "register";
-    }
-
-    @GetMapping("/login")
-    public String login() {
-        return "login";
-    }
-
-    @PostMapping("/register")
-    public String registerUserAccount
-            (@ModelAttribute("userRegistrationForm") @Valid UserRegistrationForm userRegistrationForm,
-             HttpServletRequest request, Errors errors) {
-
+    @RequestMapping(value = "/register",method = RequestMethod.POST, consumes = "application/json")
+    public ResponseEntity<?> registerUserAccount
+            (@RequestBody @Valid UserRegistrationForm userRegistrationForm, Errors errors) {
+        if (errors.hasErrors()) {
+            return new ResponseEntity<>(errors.getAllErrors().stream().map(DefaultMessageSourceResolvable::getDefaultMessage),
+                    HttpStatus.BAD_REQUEST);
+        }
         try {
             userService.registerNewUser(
                     userRegistrationForm.getEmail(),
                     userRegistrationForm.getPassword());
+            return new ResponseEntity<>(HttpStatus.ACCEPTED);
         } catch (Exception e) {
-            return "register";
+            return new ResponseEntity<>("User with this email already exists.", HttpStatus.BAD_REQUEST);
         }
-        return "login";
     }
 
 }

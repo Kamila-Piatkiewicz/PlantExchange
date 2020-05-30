@@ -5,10 +5,131 @@
     <meta charset="UTF-8">
     <title>Plant Exchange</title>
 </head>
-<body>
-<h2>Welcome to Plant Exchange</h2>
-<p>
-    <a href="/logout">Log out</a>
-</p>
+<body style="margin: 50px">
+<h2>Witaj w aplikacji Plant Exchange</h2>
+<p>Plant Exchange to aplikacja, która umożliwia użytkownikom wymianę, sprzedaż i oddawanie roślin doniczkowych.
+Dodawane przez użytkowników ogłoszenia zawierają m.in. informacje o danej roślinie, zdjęcia, lokalizację,
+a także tagi, które ułatwiają użytkownikom wyszukiwanie interesujących ogłoszeń. Tagi mogą dotyczyć gatunku rośliny,
+jej rozmiaru, stanu czy innej charakterystyki.</p>
+<img height="70" width="60"
+     src="https://www.kindpng.com/picc/m/435-4359511_pot-plant-clipart-many-plant-potted-plants-clipart.png">
+<hr>
+<div>
+    <h3>Dokumentacja API</h3>
+    <hr>
+    <h4>Rejestracja i uwierzytelnianie</h4>
+    <p>Niezalogowany użytkownik ma dostęp jedynie do strony głównej "/". Aby korzystać z API należy się zarejestrować,
+        wysyłając zaprezentowany poniżej formularz rejestracyjny w formie JSON metodą HTTP POST na adres /register.</p>
+    <p>{ "email": "test123@test.pl", "password": "abcabc" }</p>
+    <p>Pole "email" powinno zawierać poprawny adres email o długości nie mniejszej niż 4 i nie większej niż 64.
+        Nie może być to email konta, które już istnieje w aplikacji.</p>
+    <p>Pole "password" powinno zawierać ciąg znaków o długości nie mniejszej niż 6 i nie większej niż 32.</p>
+    <p>Rejestracja może zakończyć się z następującymi kodami odpowiedzi:</p>
+    <ul>
+        <li>202 Accepted - rejestracja się powiodła i nowy użytkownik został zapisany do bazy danych</li>
+        <li>400 Bad Request - błąd w formularzu rejestracyjnym lub przy zapisie do bazy danych,
+            należy zapoznać się z treścią wiadomości zwrotnej
+        </li>
+    </ul>
+    <h4>Endpointy REST API</h4>
+    <p>Requesty mogą zostać przetworzone z następującymi kodami odpowiedzi:</p>
+    <ul>
+        <li>
+            200 - żądanie zostało poprawnie sformułowane
+        </li>
+        <li>
+            400 - żądanie zawiera błędy (np. niepoprawny typ danych, niepoprawne parametry url, brakujące elementy
+            żądania)
+        </li>
+        <li>
+            403 - odmowa dostępu, żądanie może zostać przetworzone tylko przez autora danego ogłoszenia
+        </li>
+    </ul>
+    <h4>/plant-offers</h4>
+    <p>Endpoint /plant-offers umożliwia zalogowanym użytkownikom na pobranie listy ogłoszeń wg wybranych kryteriów,
+        dodać nowe ogłoszenie lub zaktualizować bądź usunąć stworzoną wcześniej przez niego ogłoszenie. </p>
+    <ul>
+        <li>
+            <b>GET /plant-offers</b>
+            <p>Zwraca wszystkie istniejące w aplikacji ogłoszenia</p>
+        </li>
+        <li>
+            <b>GET /plant-offers/{id}</b>
+            <p>Zwraca ogłoszenie o podanym id lub pustą odpowiedź, jeśli dane ogłoszenie nie zostało znalezione.
+                Id jest typu Integer.</p>
+        </li>
+        <li>
+            <b>GET /plant-offers/?city={city}&category={category}&tags={list-of-tags}</b>
+            <p>Możliwe jest skorzystanie z trzech parametrów url. "City" umożliwia wyszukiwanie ogłoszeń po nazwie
+                miasta. "Category" umożliwia wyszukiwanie po kategorii ogłoszenia. Dostępne kategorie to "SELL", "EXCHANGE",
+                "GIVE_AWAY", "LOOK_FOR". Parametr "tags" umożliwia wyszukiwanie po dowolnej liczbie tagów, które należy rozdzielić
+                przecinkiem.</p>
+        </li>
+        <li>
+            <b>POST /plant-offers</b>
+            <p>Dodaje nowe ogłoszenie. To żądanie wymaga dostarczenia JSONa z zawartością ogłoszenia. Ogłoszenie
+                może zawierać pola: </p>
+            <p>{"category": SELL | GIVE_AWAY | LOOK_FOR | EXCHANGE,<br>
+                "title": string,<br>
+                "description": string,<br>
+                "price": numeric,<br>
+                "photos": string[],<br>
+                "tags": string[],<br>
+                "city": string }
+            </p>
+            <p>Obowiązkowe są pola category i title. W polu tags powinny się znaleźć nazwy istniejących już tagów.
+            Serwer zwraca obiekt utworzonego ogłoszenia.</p>
+        </li>
+        <li>
+            <b>DELETE /plant-offers/{id}</b>
+            <p>Usuwa ogłoszenie o podanym id, żądanie może zgłosić jedynie zalogowany autor ogłoszenia.</p>
+        </li>
+        <li>
+            <b>PUT /plant-offers/{id}</b>
+            <p>Zmienia ogłoszenie o podanym id na taką jak w przesłanym obiekcie w formie JSON. Pola "category",
+                "title", "description", "photos",
+                "tags", "price", "city" zostaną zastąpione podanymi przez użytkownika. Pola takie jak data utworzenia
+                czy autor nie ulegają zmianie. Zmiany ogłoszenia może dokonać tylko autor.</p>
+        </li>
+    </ul>
+    <h4>/tags</h4>
+    <p>Endpoint /tags umożliwia zalogowanym użytkownikom na pobranie listy tagów dostępnych w aplikacji, a także
+        dodanie nowych. </p>
+    <ul>
+        <li>
+            <b>GET /tags</b>
+            <p>Pobiera listę wszystkich dostępnych tagów.</p>
+        </li>
+        <li>
+            <b>GET /tags/{name}</b>
+            <p>Jeżeli tag o podanej nazwie istnieje, zwraca go.</p>
+        </li>
+        <li>
+            <b>POST /tags</b>
+            <p>Dodaje nowy tag. W żądaniu należy umieścić następujący JSON:</p>
+            <p>{ "name": string }</p>
+            <p>Serwer zwraca obiekt utworzonego tagu.</p>
+        </li>
+    </ul>
+    <h4>/users</h4>
+    <p>Endpoint /users pozwala na pobranie listy zarejestrowanych użytkowników, a także pobranie ogłoszeń
+    dodanych przez konkretnego użytkownika.</p>
+    <ul>
+        <li>
+            <b>GET /users</b>
+            <p>Zwraca listę zarejestrowanych użytkowników. Dane te obejmują jedynie adresy e-mail, będące loginami w aplikacji.
+            </p>
+        </li>
+        <li>
+            <b>GET /users/{email}</b>
+            <p>Jeżeli użytkownik o podanym adresie email posiada konto w aplikacji, serwer zwraca obiekt tego użytkownika.
+            </p>
+        </li>
+        <li>
+            <b>GET /users/{email}/offers</b>
+            <p>Zwraca wszystkie oferty utworzone przez użytkownika o podanym adresie email.</p>
+        </li>
+    </ul>
+</div>
 </body>
 </html>

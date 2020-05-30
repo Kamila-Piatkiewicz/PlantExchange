@@ -1,12 +1,11 @@
 package com.plantexchange.plantexchange;
 
-import com.plantexchange.plantexchange.model.DealCategory;
-import com.plantexchange.plantexchange.model.DealTag;
-import com.plantexchange.plantexchange.model.PlantDeal;
+import com.plantexchange.plantexchange.model.OfferCategory;
+import com.plantexchange.plantexchange.model.PlantOffer;
+import com.plantexchange.plantexchange.model.Tag;
 import com.plantexchange.plantexchange.model.User;
-import com.plantexchange.plantexchange.repository.PlantDealRepository;
+import com.plantexchange.plantexchange.repository.PlantOfferRepository;
 import com.plantexchange.plantexchange.repository.TagRepository;
-import com.plantexchange.plantexchange.repository.UserRepository;
 import com.plantexchange.plantexchange.service.UserService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -15,7 +14,6 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 
 import java.time.LocalDateTime;
-import java.util.Collections;
 
 import static java.util.Arrays.asList;
 
@@ -32,49 +30,49 @@ public class PlantExchangeApplication {
 
             TagRepository tagRepo = ctx.getBean(TagRepository.class);
             tagRepo.saveAll(asList(
-                    new DealTag("Rozmiar S"),
-                    new DealTag("Rozmiar M"),
-                    new DealTag("Rozmiar L"),
-                    new DealTag("Szczepka"),
-                    new DealTag("Monstera"),
-                    new DealTag("Skrzydłokwiat"),
-                    new DealTag("Bluszcz"),
-                    new DealTag("Kolekcjonerski"),
-                    new DealTag("Kwitnący")));
+                    new Tag("Rozmiar S"),
+                    new Tag("Rozmiar M"),
+                    new Tag("Rozmiar L"),
+                    new Tag("Szczepka"),
+                    new Tag("Monstera"),
+                    new Tag("Skrzydłokwiat"),
+                    new Tag("Bluszcz"),
+                    new Tag("Kolekcjonerski"),
+                    new Tag("Kwitnący")));
 
             UserService userService = ctx.getBean(UserService.class);
-            User user1 = userService.registerNewUser("test@test.pl","123");
-            User user2 = userService.registerNewUser("test2@test.pl","123");
+            User user1 = userService.registerNewUser("test@test.pl", "123456");
+            User user2 = userService.registerNewUser("test2@test.pl", "123456");
 
-            PlantDealRepository plantRepo = ctx.getBean(PlantDealRepository.class);
-            plantRepo.save(PlantDeal.builder()
+            PlantOfferRepository plantRepo = ctx.getBean(PlantOfferRepository.class);
+            plantRepo.save(PlantOffer.builder()
                     .author(user1)
-                    .category(DealCategory.SELL)
+                    .category(OfferCategory.SELL)
                     .publishedDate(LocalDateTime.now())
                     .title("Sprzedam bluszcz")
-                    .tags(tagRepo.findAllById(asList("Rozmiar M", "Bluszcz")))
+                    .tags(asList(new Tag("Rozmiar M"), new Tag("Bluszcz")))
                     .description("Mam do sprzedania bluszcz odmiana Gold Heart, najdłuższe pędy mają 40cm.")
                     .city("Lublin")
                     .price(25.)
                     .build());
 
-            plantRepo.save(PlantDeal.builder()
+            plantRepo.save(PlantOffer.builder()
                     .author(user1)
-                    .category(DealCategory.GIVE_AWAY)
+                    .category(OfferCategory.GIVE_AWAY)
                     .publishedDate(LocalDateTime.now())
                     .title("Oddam monsterę")
-                    .tags(tagRepo.findAllById(asList("Rozmiar L", "Monstera")))
+                    .tags((asList(new Tag("Rozmiar L"), new Tag("Monstera"))))
                     .description("Oddam monsterę do odratowania, ma uszkodzonych kilka liści, była przelana.")
                     .city("Warszawa")
                     .build());
 
-            plantRepo.save(PlantDeal.builder()
+            plantRepo.save(PlantOffer.builder()
                     .author(user2)
-                    .category(DealCategory.EXCHANGE)
+                    .category(OfferCategory.EXCHANGE)
                     .publishedDate(LocalDateTime.now())
                     .title("Wymienię skrzydłokwiat na inną cieniolubną")
-                    .tags(tagRepo.findAllById(asList("Rozmiar S", "Skrzydłokwiat", "Kwitnący")))
-                    .description("Świeżo ukorzeniony skrzydłokwiat, wymienię na inną roślinę która da radę w cieniu.")
+                    .tags(asList(new Tag("Rozmiar S"), new Tag("Skrzydłokwiat"), new Tag("Kwitnący")))
+                    .description("Wymienię skrzydłokwiat na inną roślinę która da radę w cieniu.")
                     .city("Lublin")
                     .build());
 

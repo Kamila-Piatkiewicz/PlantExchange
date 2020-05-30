@@ -1,7 +1,7 @@
 package com.plantexchange.plantexchange.repository;
 
-import com.plantexchange.plantexchange.model.DealTag;
+import com.plantexchange.plantexchange.model.Tag;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface TagRepository extends JpaRepository<DealTag, String> {
+public interface TagRepository extends JpaRepository<Tag, String> {
 }

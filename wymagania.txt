@@ -1,0 +1,39 @@
+Ocena: 4,5
+
+- Wykorzystanie Spring Framework razem ze SpringBoot, starterami SpringBoot security i JPA, w tym elementów takich jak:
+    - @SpringBootApplication
+    - CommandLineRunner do dodania demowych danych na starcie aplikacji
+    - DI i IOC - użycie @Autowired do wstrzykiwania zależności
+    - Wykorzystanie różnych typów beanów: @Controller, @RestController, @Service
+    - metody REST API w kontrolerach wykorzystujące @RequestMapping wraz z różnymi parametrami,
+    @PathVariable, @RequestBody, @RequestParam
+    - Spring Security wykorzystany do skonfigurowania zabezpieczeń serwera i uprawnień użytkowników
+    - Springowa walidacja danych, wykorzystanie m.in. @NotNull, @Email, @Size wraz z customowymi messagami
+    - Spring JPA wykorzystane do maksymalnego uproszczenia warstwy persystencji, użycie JpaRepository,
+    stworzenie modeli bazodanowych z odpowiednimi adnotacjami i parametrami, customowych @Query
+    - wykorzystanie CriteriaBuilder do tworzenia bardziej zaawansowanych zapytań do bazy
+    - odpowiednie skonfigurowanie pliku application.properties
+
+- Użycie Mavena jako narzędzia automatyzacji budowy projektu
+    - niezbędne zależności zostały umieszczone w pliku pom
+    - projekt zawiera tylko jeden moduł mavenowy, bo aplikacja jest dosyć mała
+    - odpowiednia konfiguracja pom'a, żeby aplikacja mogła się zachowywać jak Spring Boot application
+
+- Git jako narzędzie kontroli wersji
+    - używany był jeden branch, bo było to wystarczające w projekcie jednoosobowym
+    - commity były dodawane sukcesywnie, ale jednak niezbyt regularnie
+    - projekt wrzucony na repo GitHub
+
+- Dokumentacja
+    - Jest wyświetlana na stronie głównej aplikacji, można ją odnaleźć w pliku index.html
+    - Jest czytelna i przejrzysta
+
+- Endpointy
+    - w aplikacji znajdują się 4 kontrolery przetwarzające łącznie 11 typów żądań metodami
+    GET, POST, PUT, DELETE
+    - przykładowe requesty, około 20, zostało załączonych w wyeksportowanych kolekcji Postmana
+
+- Baza danych
+    - wykorzystałam MySQL
+    - 5 tabel reprezentujących: ogłoszenie, tag ogłoszenia, użytkownika, zdjęcie, powiązanie taga z ogłoszeniem
+    - odpowiednie skonfigurowanie application.properties pod serwer MySQL

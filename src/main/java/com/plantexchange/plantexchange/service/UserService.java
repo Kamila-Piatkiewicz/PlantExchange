@@ -16,9 +16,9 @@ public class UserService {
     private BCryptPasswordEncoder passwordEncoder;
 
     public User registerNewUser(String email, String password) {
-        if (userRepository.findByEmail(email) != null) {
+        userRepository.findByEmail(email).ifPresent((user) -> {
             throw new RuntimeException("Account with this email was already registered");
-        }
+        });
         return userRepository.save(new User(email, passwordEncoder.encode(password)));
     }
 }

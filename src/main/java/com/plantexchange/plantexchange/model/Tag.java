@@ -4,20 +4,23 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @Entity
-@Table(name = "tag")
-public class DealTag {
+@Table(name = "tags")
+public class Tag {
 
     @Id
     @Column(name = "name", length = 64, nullable = false)
     String name;
 
-    public DealTag(String name) {
+    public Tag(String name) {
         this.name = name;
     }
 }
