@@ -1,13 +1,14 @@
 ## Witaj w aplikacji Plant Exchange
 
-Plant Exchange to aplikacja, która umożliwia użytkownikom wymianę, sprzedaż i oddawanie roślin doniczkowych. Dodawane przez użytkowników ogłoszenia zawierają m.in. informacje o danej roślinie, zdjęcia, lokalizację, a także tagi, które ułatwiają użytkownikom wyszukiwanie interesujących ogłoszeń. Tagi mogą dotyczyć gatunku rośliny, jej rozmiaru, stanu czy innej charakterystyki.
-
 <img height="70" width="60"
      src="https://www.kindpng.com/picc/m/435-4359511_pot-plant-clipart-many-plant-potted-plants-clipart.png">
 
+Plant Exchange to aplikacja, która umożliwia użytkownikom wymianę, sprzedaż i oddawanie roślin doniczkowych. Dodawane przez użytkowników ogłoszenia zawierają m.in. informacje o danej roślinie, zdjęcia, lokalizację, a także tagi, które ułatwiają użytkownikom wyszukiwanie interesujących ogłoszeń. Tagi mogą dotyczyć gatunku rośliny, jej rozmiaru, stanu czy innej charakterystyki.
+
+
 * * *
 
-<div>
+<img src="plantexchange.png">
 
 ### Dokumentacja API
 
