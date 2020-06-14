@@ -1,0 +1,815 @@
+{
+	"info": {
+		"_postman_id": "7aa11be6-aa1f-42b5-9061-512f4ffdd4e2",
+		"name": "PlantExchange",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get all offers - unauthorized",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/plant-offers/",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"plant-offers",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all offers",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "123456",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "test@test.pl",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/plant-offers/",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"plant-offers",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all users",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "123456",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "test@test.pl",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/users/",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all offers of test@test.pl",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "123456",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "test@test.pl",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/users/test@test.pl/plant-offers",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"test@test.pl",
+						"plant-offers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get offers where city=Lublin & category=Exchange",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "123456",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "test@test.pl",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/plant-offers/?city=Lublin&category=EXCHANGE",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"plant-offers",
+						""
+					],
+					"query": [
+						{
+							"key": "city",
+							"value": "Lublin"
+						},
+						{
+							"key": "category",
+							"value": "EXCHANGE"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get offers where tags=rozmiar S,kwitnący",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "123456",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "test@test.pl",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/plant-offers/?tags=rozmiar S,kwitnący",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"plant-offers",
+						""
+					],
+					"query": [
+						{
+							"key": "tags",
+							"value": "rozmiar S,kwitnący"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all tags",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "123456",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "test@test.pl",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/tags/",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"tags",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get offer with id=1",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "123456",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "test@test.pl",
+							"type": "string"
+						},
+						{
+							"key": "saveHelperData",
+							"value": true,
+							"type": "boolean"
+						},
+						{
+							"key": "showPassword",
+							"value": false,
+							"type": "boolean"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic dGVzdEB0ZXN0LnBsOjEyMw=="
+					}
+				],
+				"url": {
+					"raw": "localhost:8080/plant-offers/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"plant-offers",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get tag with name=Rozmiar S",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "123456",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "test@test.pl",
+							"type": "string"
+						},
+						{
+							"key": "saveHelperData",
+							"value": true,
+							"type": "boolean"
+						},
+						{
+							"key": "showPassword",
+							"value": false,
+							"type": "boolean"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic dGVzdEB0ZXN0LnBsOjEyMw=="
+					}
+				],
+				"url": {
+					"raw": "localhost:8080/tags/Rozmiar%20S",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"tags",
+						"Rozmiar%20S"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete offer with id=2",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "123456",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "test@test.pl",
+							"type": "string"
+						},
+						{
+							"key": "saveHelperData",
+							"value": true,
+							"type": "boolean"
+						},
+						{
+							"key": "showPassword",
+							"value": false,
+							"type": "boolean"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic dGVzdEB0ZXN0LnBsOjEyMw=="
+					}
+				],
+				"url": {
+					"raw": "localhost:8080/plant-offers/2",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"plant-offers",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete offer - not permitted",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "123456",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "test@test.pl",
+							"type": "string"
+						},
+						{
+							"key": "saveHelperData",
+							"value": true,
+							"type": "boolean"
+						},
+						{
+							"key": "showPassword",
+							"value": false,
+							"type": "boolean"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic dGVzdEB0ZXN0LnBsOjEyMw=="
+					}
+				],
+				"url": {
+					"raw": "localhost:8080/plant-offers/3",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"plant-offers",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post new offer",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "123456",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "test@test.pl",
+							"type": "string"
+						},
+						{
+							"key": "saveHelperData",
+							"value": true,
+							"type": "boolean"
+						},
+						{
+							"key": "showPassword",
+							"value": false,
+							"type": "boolean"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic dGVzdEB0ZXN0LnBsOjEyMw=="
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"category\": \"SELL\",\n    \"title\": \"Sprzedam xxx\",\n    \"description\": \"Opis\",\n    \"price\": 40,\n    \"photos\": [\"https://s3.eu-central-1.amazonaws.com/pressland-cms/cache/__original__/nt/18680832-odmiany-bluszczu-wyhodowane-przez-czlowieka-sa-wrazliwe.jpeg\",\n    \"https://static01.leroymerlin.pl/files/media/image/768/1607768/product/main.jpg\"],\n    \"tags\": [\"Bluszcz\", \"Rozmiar S\"],\n    \"city\": \"Lublin\"\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/plant-offers/",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"plant-offers",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post new offer - mimalistic",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "123456",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "test@test.pl",
+							"type": "string"
+						},
+						{
+							"key": "saveHelperData",
+							"value": true,
+							"type": "boolean"
+						},
+						{
+							"key": "showPassword",
+							"value": false,
+							"type": "boolean"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic dGVzdEB0ZXN0LnBsOjEyMw=="
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"category\": \"SELL\",\n    \"title\": \"Sprzedam grubosza\"\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/plant-offers/",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"plant-offers",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post new offer - missing title",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "123456",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "test@test.pl",
+							"type": "string"
+						},
+						{
+							"key": "saveHelperData",
+							"value": true,
+							"type": "boolean"
+						},
+						{
+							"key": "showPassword",
+							"value": false,
+							"type": "boolean"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic dGVzdEB0ZXN0LnBsOjEyMw=="
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"category\": \"SELL\",\n    \"description\": \"...\"\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/plant-offers/",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"plant-offers",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post new tag",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "123456",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "test@test.pl",
+							"type": "string"
+						},
+						{
+							"key": "saveHelperData",
+							"value": true,
+							"type": "boolean"
+						},
+						{
+							"key": "showPassword",
+							"value": false,
+							"type": "boolean"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic dGVzdEB0ZXN0LnBsOjEyMw=="
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Rozmiar XL\"\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/tags/",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"tags",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update offer with id=1 (change price)",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "123456",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "test@test.pl",
+							"type": "string"
+						},
+						{
+							"key": "saveHelperData",
+							"value": true,
+							"type": "boolean"
+						},
+						{
+							"key": "showPassword",
+							"value": false,
+							"type": "boolean"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic dGVzdEB0ZXN0LnBsOjEyMw=="
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 1,\r\n    \"author\": {\r\n        \"email\": \"test@test.pl\"\r\n    },\r\n    \"publishedDate\": \"2020-06-08T21:50:40.575\",\r\n    \"category\": \"SELL\",\r\n    \"title\": \"Sprzedam bluszcz\",\r\n    \"description\": \"Mam do sprzedania bluszcz odmiana Gold Heart, najdłuższe pędy mają 40cm.\",\r\n    \"price\": 25.50,\r\n    \"photos\": [],\r\n    \"tags\": [\r\n        {\r\n            \"name\": \"Bluszcz\"\r\n        },\r\n        {\r\n            \"name\": \"Rozmiar M\"\r\n        }\r\n    ],\r\n    \"city\": \"Lublin\"\r\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/plant-offers/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"plant-offers",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"email\": \"test123@test.pl\",\n\"password\": \"abcabc\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/register",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Register - invalid email",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"email\": \"notemail\",\n\"password\": \"abcabc\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/register",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Register - invalid password",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"email\": \"valid@email.com\",\n\"password\": \"x\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/register",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"register"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
